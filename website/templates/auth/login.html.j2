@@ -1,0 +1,50 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="login_box">
+        <h1>Login</h1>
+        <form action="/api/login" method="post">
+            <div class="form_group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username">
+
+            </div>
+            <div class="form_group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section class="login_box">
+        <h1>Register</h1>
+        <form action="/api/register" method="post" id="registerForm">
+            <div class="form_group">
+                <label for="email" title="We'll never share your email with anyone else!">Email address</label>
+                <input type="email" id="email" name="email" placeholder="Enter email">
+            </div>
+
+            <div class="form_group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username">
+            </div>
+
+            <div class="form_group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+
+            <div class="form_group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" id="password2" name="password2" placeholder="Confirm Password">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/login.js"></script>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Riget Zoo Adventures</title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Stylesheets -->
+
+        <link rel="stylesheet" href="/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+        <!-- Social Media Meta Tags -->
+        <meta property="og:title" content="Riget Zoo Adventures" />
+        <meta property="og:description" content="A fun and educational day out for the whole family!" />
+        <meta property="og:image" content="/images/feeding.jpg" />
+        <meta property="og:url" content="https://example.com" />
+    </head>
+
+    <body>
+        <section class="nav_bar">
+            <h1><a href="/">Riget Zoo Adventures</a></h1>
+
+            <section>
+                <a href="/lessons">Lessons</a>
+                <a href="/bookings">Bookings</a>
+                
+                {% if session["user"] %}
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
+            </section>
+        </section>
+
+
+        {% if session['error'] %}
+            <section class="nav_bar">
+                <div class="error"><b>{{ session['error'] }}</b></div>
+            </section>
+        {% endif %}
+
+        {# This is dumb and I hate it, however it appears to be the only way #}
+        {# to properly update the session from a Jinja2 template.            #}
+        {% set _ = session.update({"error": None}) %}
+        
+
+        <section class="main">
+            {% block body required %}{% endblock body %}
+        </section>
+
+        <section class="footer">
+            <p>&copy; 2024 Riget Zoo Adventures</p>
+        </section>
+    </body>
+
+    {% block scripts %} {% endblock scripts %}
+</html>

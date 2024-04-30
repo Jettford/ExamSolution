@@ -1,0 +1,2 @@
+Phthalo Green: (18, 53, 36) #123524
+Ultramarine: #0437F2

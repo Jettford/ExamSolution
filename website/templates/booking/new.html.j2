@@ -1,0 +1,30 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="main_menu_box wide">
+        <h2>Prices and Tickets Available {% if date %}on {{ date }} {% endif %}</h2>
+
+        {% for price in prices %}
+            <a href="/bookings/create/{{price.id}}/{{date}}" class="main_menu_item">
+                <article>
+                    <h3>{{price.type}}</h3>
+                    <p>Price: £{{price.price}}</p>
+                    <p>Available: {{price.max_per_day}}</p>
+                </article>
+            </a>
+        {% endfor %}
+
+        {% if prices|length == 0 %}
+            <p>No prices available for the selected day</p>
+        {% endif %}
+    </section>
+
+    <section class="main_menu_box">
+        <form action="/bookings/new" method="POST">
+            <h2>Book a ticket for a different day</h2>
+            <label for="date">Select a date:</label>
+            <input type="date" id="date" name="date" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

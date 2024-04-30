@@ -1,0 +1,57 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    {% if bookings|length > 0 %}
+        <section class="main_menu_box wide">
+            <h2>Your currently planned adventures!</h2>
+                {% for booking in bookings %}
+                    <a class="main_menu_item">
+                        <article>
+                            <h3>{{prices[booking.price_id].type}}</h3>
+                            <p>{{booking.time}}</p>
+                            <p>Booking Reference: {{ booking.id }}</p>
+
+                            <button onclick="window.location.href='/bookings/delete/{{ booking.id }}'">Cancel</button>
+                        </article>
+                    </a>
+                {% endfor %}
+
+            <p>If you attempt to make a booking for a day after a day you already have a booking (or the same day), the price will be halved at checkout as a special thanks for spending extra time with us!</p>
+        </section>
+
+        <section class="main_menu_box">
+            <form style="justify-content: flex-start;" action="/bookings/new" method="POST">
+                <h2>Book another adventure with us!</h2>
+                <label for="date">Select a date:</label>
+                <input type="date" id="date" name="date" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    {% else %}
+        <section class="main_menu_box wide">
+            <form action="/bookings/new" method="POST">
+                <h2>You have no adventures planned, pick a date and book now!</h2>
+                <label for="date">Select a date:</label>
+                <input type="date" id="date" name="date" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    {% endif %}
+
+    {% if "user" in session and session["user"]["admin"] %}
+        <section class="main_menu_box">
+            <h2>Admin Panel</h2>
+            <a href="/bookings/admin/list" class="main_menu_item">
+                <article>
+                    <h3>View all upcoming bookings</h3>
+                </article>
+            </a>
+
+            <a href="/bookings/admin" class="main_menu_item">
+                <article>
+                    <h3>View specific days</h3>
+                </article>
+            </a>
+        </section>
+    {% endif %}
+{% endblock %}

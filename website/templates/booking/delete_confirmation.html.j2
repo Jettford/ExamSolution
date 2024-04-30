@@ -1,0 +1,19 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+
+    <section class="main_menu_box wide">
+        <h2>Please be sure you wish to cancel this booking, as refunds are not issued.</h2>
+
+        <section class="inline_form_group wide left">
+            <button onclick="window.location.href='/bookings'">Go Back</button>
+            <form style="width: auto;" action="/bookings/delete/{{ booking.id }}" method="POST">
+                <button type="submit">Confirm Cancellation</button>
+            </form>
+        </section>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

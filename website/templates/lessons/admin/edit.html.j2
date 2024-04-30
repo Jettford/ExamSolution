@@ -1,0 +1,31 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="main_menu_box wide">
+        <h1 id="titlePreview">{{ lesson.title }}</h1>
+        <p id="bodyPreview"></p>
+    </section>
+
+    <section class="main_menu_box wide">
+        <form class="left" style="justify-content: flex-start;" action="/lessons/edit/{{ lesson.id }}" method="POST">
+            <label for="title">Title:</label>
+            <input class="wide" type="text" id="title" name="title" value="{{ lesson.title }}">
+
+            <label for="body">Body:</label>
+            <textarea class="wide" id="body" name="body">{{ lesson.body }}</textarea>
+
+            <label for="tags">Tags:</label>
+            <input class="wide" type="text" id="tags" name="tags" value="{{ lesson.tags }}">
+
+            <p>Note: Start with a small description of the article so the preview looks good</p>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.0/purify.min.js"></script>
+    <script src="/admin/render.js"></script>
+{% endblock %}

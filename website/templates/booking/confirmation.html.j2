@@ -1,0 +1,50 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="main_menu_box wide">
+        <h2>Booking Confirmation</h2>
+        <p>Confirm your purchase of {{ price.type }} for {{ date }}</p>
+
+        <form action="/bookings/create/{{ price.id }}/{{ datefull }}" method="POST" id="submitForm" class="left">
+            <div class="inline_form_group">
+                <input type="radio" id="card" name="payment_type" value="card" required>
+                <label for="card">Card</label><br>
+            </div>
+
+            <div id="cardDetails" style="display: none;">
+                <div>
+                    <label for="card_number">Card Number:</label>
+                    <input type="number" id="card_number" name="card_number" pattern="[a-zA-Z]*">
+                </div>
+                <div>
+                    <label for="expiry_date">Expiry Date:</label>
+                    <input type="date" id="expiry_date" name="expiry_date">
+                </div>
+                <div>
+                    <label for="cvv">CVV:</label>
+                    <input type="number" id="cvv" name="cvv" style="width:40px;" pattern="[a-zA-Z]*" >
+                </div>
+            </div>
+            
+            <div class="inline_form_group">
+                <input type="radio" id="cash" name="payment_type" value="cash" required>
+                <label for="cash">Pay on Arrival</label><br>
+            </div>
+            
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </section>
+
+    <section class="main_menu_box">
+        <form action="/bookings/new" method="POST">
+            <h2>Book a ticket for a different day</h2>
+            <label for="date">Select a date:</label>
+            <input type="date" id="date" name="date" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/confirmbooking.js"></script>
+{% endblock %}

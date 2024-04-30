@@ -1,0 +1,28 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="main_menu_box wide">
+        <h2>View bookings for {{ date }}!</h2>
+            {% for booking in bookings %}
+                <a class="main_menu_item">
+                    <article>
+                        <h3>{{ prices[booking.price_id].type }}</h3>
+                        <p>{{ booking.time }}</p>
+                        <p>Customer: {{ customers[booking.user_id].name }}</p>
+                        <p>Contact Email: {{ customers[booking.user_id].email }}</p>
+                        <p>Booking Reference: {{ booking.id }}</p>
+
+                        <button onclick="window.location.href='/bookings/delete/{{ booking.id }}'">Cancel</button>
+                    </article>
+                </a>
+            {% endfor %}
+    </section>
+
+    <section class="main_menu_box">
+        <form action="/bookings/admin" method="POST">
+            <label for="date">Select a date:</label>
+            <input type="date" id="date" name="date" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

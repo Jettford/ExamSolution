@@ -1,0 +1,61 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="main_menu_box">
+        <h1>Things to Learn!</h1>
+        {% for lesson in articles %}
+            <a href="/lessons/{{ lesson.id }}">
+                <article>
+                    <h2 title="Tags: {{ lesson.tags }}">{{ lesson.title }}</h2>
+
+                    <p>{{ (lesson.body|render|striptags)[:30] }}...</p>
+                </article>
+            </a>
+        {% endfor %}
+    </section>
+
+    <section class="slide_show">
+        <h1>Our Zoo!</h1>
+
+        <img style="display: block;" src="images/feeding.jpg" alt="Someone feeding some animals">
+        <img style="display: none;" src="images/animals.jpg" alt="Some animals">
+        <img style="display: none;" src="images/lions.jpg" alt="Numerous lions">
+        <img style="display: none;" src="images/panda.jpg" alt="A panda">
+        <img style="display: none;" src="images/pandas.jpg" alt="A set of pandas">
+        <img style="display: none;" src="images/tiger.jpg" alt="A Tiger">
+
+    </section>
+
+    <section class="main_menu_box">
+        <h1>About Us!</h1>
+
+        <article>
+            <h2>Opening Times</h2>
+
+            <p>Monday - Friday: 9am - 5pm</p>
+            <p>Saturday - Sunday: 10am - 4pm</p>
+        </article>
+
+        <article>
+            <h2>Address</h2>
+
+            <p>123 Fake Street</p>
+            <p>Fake Town</p>
+            <p>FA1 2KE</p>
+        </article>
+
+        <article>
+            <h2>Contact</h2>
+
+            <p>Phone: 01234 567890</p>
+            <p>Email:
+                <a href="mailto:fake@fakedomain.com">rigetzooadventures@gmail.com</a>
+            </p>
+        </article>
+    </section>
+
+{% endblock body %}
+
+{% block scripts %}
+    <script src="slideshow.js"></script>
+{% endblock scripts %}

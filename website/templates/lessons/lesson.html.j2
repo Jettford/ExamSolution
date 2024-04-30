@@ -1,0 +1,34 @@
+{% extends "template.html.j2" %}
+
+{% block body %}
+    <section class="main_menu_box wide">
+        <h1>{{ lesson.title }}</h1>
+        <p>{{ lesson.body|render }}</p>
+    </section>
+
+    <section class="main_menu_box">
+        <h1>Other Articles!</h1>
+        {% for lesson in lessons %}
+            <a href="/lessons/{{ lesson.id }}">
+                <article>
+                    <h2 title="Tags: {{ lesson.tags }}">{{ lesson.title }}</h2>
+
+                    <p>{{ (lesson.body|render|striptags)[:30] }}...</p>
+                </article>
+            </a>
+        {% endfor %}
+    </section>
+
+    {% if 'user' in session and session['user']['admin'] %}
+        <section class="main_menu_box">
+            <h1>Admin Panel</h1>
+            <a href="/lessons/edit/{{ lesson.id }}"><article>Edit Lesson</article></a>
+            <a href="/lessons/delete/{{ lesson.id }}"><article>Delete Lesson</article></a>
+            <a><article>Lesson View Count: {{ views }}</article></a>
+        </section>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

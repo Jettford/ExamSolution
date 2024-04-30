@@ -1,0 +1,8 @@
+{
+    "SECRET_KEY": "YOUR_SECRET_KEY",
+    "DATABASE_URI": "192.168.82.243",
+    "DATABASE_USER": "tlevel4",
+    "DATABASE_PASSWORD": "Dodge1",
+    "DATABASE_NAME": "tlevel4",
+    "DEBUG": true
+}

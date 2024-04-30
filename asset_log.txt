@@ -1,0 +1,5 @@
+Noto Sans Display font gathered from https://fonts.google.com, and then used via their CDN
+Front page stock images from Unsplash.
+Markdown Javascript Rendering engine from: https://github.com/markedjs/marked and https://cdn.jsdelivr.net/npm/marked/marked.min.js
+Dompurify html sanitization engine from: https://github.com/cure53/DOMPurify and https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.0/purify.min.js
+Fuse JS from: https://fusejs.io/ and https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js
